@@ -221,3 +221,5 @@
      </VirtualHost>
     ---
 
+# 參考ssl 檔案
+https://github.com/areslin1201/Install-Learn/blob/main/%E5%AE%8C%E6%95%B4ssl%20file.txt
