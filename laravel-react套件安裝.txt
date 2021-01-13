@@ -1,0 +1,19 @@
+# bootstrap 4 install (by laravel 8)
+  * 引入Bootstrap
+  sudo php artisan ui bootstrap
+  sudo npm install
+
+  * 安裝bootstrap套件
+  sudo npm install --no-bin-link
+  sudo npm add cross-env
+
+  sudo rm -rf resources/css
+  
+  *重整
+  npm run dev
+  npm run watch
+
+  * head bootstrap
+    <head>
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    </head>
