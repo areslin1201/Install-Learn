@@ -1,0 +1,35 @@
+<VirtualHost *:80>
+  ServerName 2020movie.cn
+  ServerAlias 2020movie.cn
+  ServerAdmin jingm830@gmail.com
+  DocumentRoot /websites/2020movie.cn/wordpress
+  
+  //路徑301
+  Redirect / {https://www.yourdomain.com}
+
+  <Directory /websites/2020movie.cn/wordpress>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+ </VirtualHost>
+ 
+ <VirtualHost *:443>
+  ServerName 2020movie.cn
+  ServerAlias 2020movie.cn
+  ServerAdmin jingm830@gmail.com
+  DocumentRoot /websites/2020movie.cn/wordpress
+
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/2020movie/certificate.crt
+  SSLCertificateKeyFile /etc/ssl/2020movie/private.key
+  SSLCertificateChainFile /etc/ssl/2020movie/ca_bundle.crt
+
+  <Directory /websites/2020movie.cn/wordpress>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+ </VirtualHost>
