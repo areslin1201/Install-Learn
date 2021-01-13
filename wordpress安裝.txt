@@ -1,0 +1,21 @@
+# 修改php.ini
+  sudo vim /etc/php.ini
+  
+  *修改單一檔案大小上限
+  upload_max_filesize = 16M
+  
+  *修改 POST 資料大小上限
+  post_max_size = 32M
+  
+  *修改記憶體上限
+  memory_limit = 64M
+  
+  *修改執行時間上限（單位為秒
+  max_execution_time
+  
+  
+# WordPress 繞過 FTP
+  sudo vim wp-config.php
+  
+  *插入下列這行指令
+  define('FS_METHOD', 'direct');
