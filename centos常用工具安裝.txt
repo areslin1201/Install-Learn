@@ -1,0 +1,9 @@
+# git
+  yum -y install git
+  
+  
+# sublime text3
+  https://www.sublimetext.com/docs/3/linux_repositories.html
+  
+  *start
+  sudo -H subl
