@@ -1,0 +1,225 @@
+# centos 更新
+  sudo yum -y update
+  sudo yum -y upgrade
+  
+  
+# 更換最高權限帳號
+  *建立一個可以sudo的帳號
+  sudo useradd {user_name}
+  
+  sudo passwd {user_name}
+  />{password}
+
+  sudo visudo
+  ---
+    ## Allow root to run any commands anywhere
+    root ALL=(ALL) ALL
+    {user_name} ALL=(ALL) ALL
+  ---    
+
+  *確定成功在取消原本的
+  su {user_name}
+
+
+# 安裝並設定防火牆
+  sudo yum -y install firewalld
+  
+  sudo systemctl status firewalld
+  *若狀態不為 active，則啟動 (start) 它
+  sudo systemctl start firewalld
+  
+  *需開機自動啟動，則還需啟用 (enable) 它
+  sudo systemctl enable firewalld
+  
+  firewall-cmd --permanent --add-port=80/tcp
+  firewall-cmd --permanent --add-port=22/tcp
+  firewall-cmd --permanent --add-port=443/tcp
+  firewall-cmd --permanent --add-port={ssh_port}/tcp
+  firewall-cmd --permanent --remove-service=dhcpv6-client
+  firewall-cmd --reload
+  firewall-cmd --list-all
+  
+
+# 安裝並設定防爆牆
+  yum -y install fail2ban
+  systemctl start fail2ban
+  systemctl enable fail2ban
+  systemctl status fail2ban
+  
+  
+# 更換22端口
+  sudo vim /etc/ssh/sshd_config
+  ---
+  #  
+  Port 22
+  Port {your_port_number}
+  ---
+  
+  *安装 semanage 工具
+  sudo yum provides semanage
+  sudo yum -y install policycoreutils-python
+  
+  *添加新端口  
+  sudo semanage port -a -t ssh_port_t -p tcp {your_port_number}  
+
+  *查看當前端口  
+  sudo semanage port -l | grep ssh  
+
+  *允許防火牆通過  
+  sudo firewall-cmd --permanent --zone=public --add-port={your_port_number}/tcp  
+
+  *重起
+  sudo firewall-cmd --reload  
+  sudo systemctl restart sshd.service  
+
+
+# 移除22端口
+  sudo vim /etc/ssh/sshd_config  
+  ---
+  #Port 22
+  Port {your_port_number}    
+  ---
+
+  *移除防火牆22端口  
+  sudo firewall-cmd --permanent --zone=public --remove-port=22/tcp
+  sudo firewall-cmd --reload
+
+  *沒有22是正常
+  sudo firewall-cmd --permanent --list-port
+  
+
+# 禁止root帳號登入
+  sudo yum -y install vim-enhanced
+  sudo vim /etc/ssh/sshd_config
+
+  *是否允許 root 管理者以 SSH 登入
+  ---
+  PermitRootLogin no
+  ---
+
+  *重新啟動 SSH 服務（CentOS Linux）  
+  sudo systemctl restart sshd  
+  
+
+# install apache
+  sudo yum -y install httpd httpd-tools
+  sudo systemctl start httpd
+  sudo systemctl enable httpd
+ 
+  *查看運行狀態
+  sudo systemctl status httpd.service
+  
+  *Apache設定在這裡
+  /etc/httpd/conf/httpd.conf DocumentRoot
+  
+  *Apache不顯示目錄
+  sudo vim /etc/httpd/conf/httpd.conf
+  
+  *註解index
+  #Options Indexes FollowSymLinks
+   
+  
+# install mariadb
+  sudo yum -y install mariadb-server mariadb
+  sudo systemctl start mariadb
+  sudo systemctl enable mariadb
+
+  *設定Mariadb
+  sudo mysql_secure_installation
+    — 設定 root 帳號密碼 (第一次直接Enter)
+    — 是否移除匿名帳號
+    — 是否允許 root 帳號遠端登入
+    — 是否移除 test 資料庫
+    — 是否重新加載權限表
+    
+  *用預設密碼進入Mysql
+  mysql -u root -p
+  
+  
+#install php
+  sudo yum -y install epel-release
+  sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+  sudo yum -y install yum-utils
+  sudo yum repolist all |grep php
+  sudo yum-config-manager --enable remi-php74
+  sudo yum -y install php php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis
+ 
+ 
+# install phpmyadmin
+  sudo yum -y install dnf
+  sudo dnf --enablerepo=remi,remi-test install phpMyAdmin
+  sudo vim /etc/httpd/conf.d/phpMyAdmin.conf
+ 
+  *新增自己的IP
+  ---
+  <Directory /usr/share/phpMyAdmin/>
+    AddDefaultCharset UTF-8
+
+    Require local
+    Require ip {ip}
+    Allow from 1.1.1.1
+  </Directory>
+  ---
+  
+  
+ # 綁定多個網站
+  *開啟虛擬目錄  
+  sudo vim /etc/httpd/conf/httpd.conf
+  ---
+  # Load config files in the "/etc/httpd/conf.d" directory, if any.
+  IncludeOptional conf.d/*.conf
+  ---
+  
+  cd /etc/httpd/conf.d
+  touch {name}.conf ex:2020movie.cn.conf
+  
+  *demo
+  ---
+  <VirtualHost *:80>  
+    ServerName 2020movie.cn  
+    ServerAlias 2020movie.cn  
+    ServerAdmin jingm830@gmail.com  
+    DocumentRoot /websites/2020movie.cn  
+
+    <Directory /websites/2020movie.cn>  
+      Options Indexes FollowSymLinks  
+      AllowOverride All  
+      Require all granted  
+    </Directory>  
+
+    </VirtualHost>  
+  ---
+  
+  
+  # ssl
+    *安裝 ssl 工具
+    sudo yum -y install mod_ssl
+  
+    *建立SSL資料夾
+    cd /etc/ssl
+    mkdir {website_name}
+  
+    sudo vim /etc/httpd/conf.d/{name}.conf
+    ---
+    <VirtualHost *:443>  
+     ServerName 2020movie.cn  
+     ServerAlias 2020movie.cn  
+     ServerAdmin jingmai831@gmail.com  
+     DocumentRoot /websites/2020movie.cn/wordpress  
+
+     SSLEngine on  
+     SSLCertificateFile /etc/ssl/certificate.crt  
+     SSLCertificateKeyFile /etc/ssl/private.key  
+     SSLCertificateChainFile /etc/ssl/ca_bundle.crt  
+
+     <Directory /websites/2020movie.cn/wordpress>  
+     Options Indexes FollowSymLinks  
+     AllowOverride All  
+     Require all granted  
+     </Directory>  
+
+     </VirtualHost>
+    ---
+  
+    *參考
+    https://github.com/areslin1201/caneots_apache_sql/blob/main/%E5%AE%8C%E6%95%B4ssl%20file.txt
