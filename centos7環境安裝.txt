@@ -1,6 +1,10 @@
 # centos 更新
   sudo yum -y update
   sudo yum -y upgrade
+
+
+# root password  
+  sudo passwd root  
   
   
 # 更換最高權限帳號
