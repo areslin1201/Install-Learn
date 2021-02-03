@@ -12,7 +12,7 @@ sudo composer --version
 
 
 # 安裝laravel包
-sudo composer create-project laravel/laravel --prefer-dist laravel-react-js
+sudo composer create-project laravel/laravel --prefer-dist {project_nam}
 cd laravel-react-js
 
 
