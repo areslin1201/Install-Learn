@@ -1,0 +1,10 @@
+常用 >   = null    < 清除緩存
+迴圈 for...of
+陣列 Set   https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Set
+
+ES6 入門
+1. https://es6.ruanyifeng.com/#docs/destructuring
+
+內存問題
+1. 參考文章: https://juejin.cn/post/6844903928060985358
+2. https://www.fooish.com/javascript/ES6/
