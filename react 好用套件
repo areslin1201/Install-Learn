@@ -1,0 +1,32 @@
+## 推薦13種套件: https://opensource.com/article/20/1/react-javascript-frameworks
+
+1. ( MATERIAL-UI )
+# https://material-ui.com/zh/
+
+2. 局部style ( Styled Components )
+#https://github.com/styled-components/styled-components
+
+3. ( React Bootstrap )
+# https://github.com/react-bootstrap/react-bootstrap
+npm install react-bootstrap bootstrap
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
+
+4. ( React Router )
+# https://github.com/ReactTraining/react-router
+npm install --save react-router
+
+import { Router, Route, Switch } from "react-router";
+ 
+// using CommonJS modules
+var Router = require("react-router").Router;
+var Route = require("react-router").Route;
+var Switch = require("react-router").Switch;
