@@ -172,6 +172,11 @@
   ---
   # Load config files in the "/etc/httpd/conf.d" directory, if any.
   IncludeOptional conf.d/*.conf
+  
+  #add conf.d setting
+  ServerSignature off
+  ServerTokens prod
+
   ---
   
   cd /etc/httpd/conf.d
