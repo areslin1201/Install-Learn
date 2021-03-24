@@ -11,4 +11,8 @@
   sublime text install babel package
   1.Control+Shift+P
   2.Package Install
-  3.babel
+  3.SublimeLinter,pacbabel,Babel Snippets
+  
+CSS3：CSS屬性自動提示或標顏色
+Emmet：快速產生HTML元素
+Goto-CSS-Declaration : 於html 位置需尋找對應的css位置
