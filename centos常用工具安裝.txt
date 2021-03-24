@@ -7,3 +7,8 @@
   
   *start
   sudo -H subl
+
+  sublime text install babel package
+  1.Control+Shift+P
+  2.Package Install
+  3.babel
