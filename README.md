@@ -1,6 +1,7 @@
 # 伺服器
   centos7環境安裝.txt
   centos常用工具安裝.txt
+    (git, sublime text)
   
   phpmyadmin安裝.txt
   完整ssl file.txt
