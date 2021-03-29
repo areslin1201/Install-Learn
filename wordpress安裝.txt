@@ -19,3 +19,11 @@
   
   *插入下列這行指令
   define('FS_METHOD', 'direct');
+  
+
+#centos8
+  php install
+   https://www.footmark.info/linux/centos/centos-8-yum-php-mainline/
+   
+   網站伺服器的 PHP 環境缺少 WordPress 需要的 MySQL 擴充功能
+   sudo dnf install php-mysqli  
