@@ -20,6 +20,10 @@
   *插入下列這行指令
   define('FS_METHOD', 'direct');
   
+  
+# 讓apache用root權限開啟wordpress資料夾
+sudo chown -R apache:root /websites/online2
+
 
 #centos8
   php install
