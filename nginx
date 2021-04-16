@@ -22,3 +22,6 @@ check ip , show 'welecome to centos' page is success
 
 # 檢視default.conf配置
 vim /etc/nginx/conf.d/default.conf
+
+nginx SSL
+https://ithelp.ithome.com.tw/articles/10241354
