@@ -24,6 +24,9 @@
 # 讓apache用root權限開啟wordpress資料夾
 sudo chown -R apache:root /websites/online2
 
+sudo find /var/www/html/wordpress/ -type d -exec chmod 775 {} \;
+sudo find /var/www/html/wordpress/ -type f -exec chmod 664 {} \;
+
 
 #centos8
   php install
