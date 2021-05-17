@@ -3,4 +3,5 @@ mysql -u root -p
 show databases;
 use {database};
 
+SELECT * FROM `wp_options`
 UPDATE `wp_options` SET `option_value` = 'http://localhost' WHERE `wp_options`.`option_id` = 1;
