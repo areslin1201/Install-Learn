@@ -30,7 +30,7 @@ npm run build:prod
 pm2 start /home/ares/Documents/ua-ssr/build/bundle.js --name test
 
 # 檢視nginx.conf配置-設置反向代理
-sudo vim /etc/nginx/nginx.con
+sudo vim /etc/nginx/nginx.conf
 
 +start++
     server {
