@@ -61,3 +61,10 @@ sudo vim /etc/nginx/nginx.conf
     }
 
 +end++
+
+pm2 set
+# uninstall
+pm2 kill
+npm remove pm2 -g
+#test with :
+which pm2
