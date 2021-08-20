@@ -62,6 +62,9 @@ sudo vim /etc/nginx/nginx.conf
 
 +end++
 
+pm2開機自動重啟
+pm2 startup
+
 pm2 set
 # uninstall
 pm2 kill
