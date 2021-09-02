@@ -30,3 +30,27 @@ import { Router, Route, Switch } from "react-router";
 var Router = require("react-router").Router;
 var Route = require("react-router").Route;
 var Switch = require("react-router").Switch;
+
+
+copy-webpack-plugin
+npm install --save-dev copy-webpack-plugin
+
+*******npm i copy-webpack-plugin@6
+*******webpack 4 only use copy webpack 6
+
+cd src/
+
+touch robots.txt
+
+package.json***
+	const CopyPlugin = require('copy-webpack-plugin');
+
+	module.exports = {
+	  plugins: [
+	    new CopyPlugin([
+	      { from: 'src/robots.txt', to: 'public/robots.txt' },
+	    ]),
+	  ],
+	};
+
+***
