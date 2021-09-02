@@ -35,7 +35,10 @@ sudo find /var/www/html/wordpress/ -type f -exec chmod 664 {} \;
    網站伺服器的 PHP 環境缺少 WordPress 需要的 MySQL 擴充功能
    sudo dnf install php-mysqli  
    
-   
+#更新資料夾權限
+  find /var/www/html/wordpress/ -type f -exec chmod 664 {} \;
+  find /var/www/html/wordpress/ -type d -exec chmod 775 {} \;
+
 #SELinux 模式與切換
 getenforce
   Enforcing：強制模式，依據設定來限制檔案資源存取。
