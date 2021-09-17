@@ -136,13 +136,26 @@
   mysql -u root -p
   
   
-#install php
+# install php
   sudo yum -y install yum-utils
   sudo yum repolist all |grep php
-  sudo yum-config-manager --enable remi-php74
+  sudo yum-config-manager --enable remi-php80
   sudo yum -y install php php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis
- 
- 
+
+
+# Opcache PHP
+  sudo yum -y install php-opcache
+  sudo vim /etc/php.d/10-opcache.ini
+  
+  ***
+    opcache.enable_cli=1
+    opcache.memory_consumption=128
+    opcache.interned_strings_buffer=8
+    opcache.max_accelerated_files=4000
+    opcache.revalidate_freq=60
+    opcache.fast_shutdown=1
+  ***
+
 # install phpmyadmin
   sudo yum -y install dnf
   sudo dnf --enablerepo=remi,remi-test install phpMyAdmin
