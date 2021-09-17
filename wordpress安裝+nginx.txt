@@ -96,7 +96,7 @@
   post_max_size = 32M
   memory_limit = 64M
   max_execution_time = 0
-  
+  max_input_time = 0
   
 # WordPress 繞過 FTP
   sudo vim wp-config.php
@@ -121,6 +121,20 @@
 # 更新資料夾權限
   find /var/www/html/wordpress/ -type f -exec chmod 664 {} \;
   find /var/www/html/wordpress/ -type d -exec chmod 775 {} \;
+
+# .htaccess 路徑
+  ***
+  # BEGIN WordPress
+    <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+    </IfModule>
+  # END WordPress
+  ***
 
 # SELinux 模式與切換
 getenforce
