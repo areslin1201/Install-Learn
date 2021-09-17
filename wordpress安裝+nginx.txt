@@ -20,10 +20,11 @@
 
 #檢視nginx.conf配置
   sudo vim /etc/nginx/nginx.conf
+  *user nginx;
 
-#nginx SSL
-  https://ithelp.ithome.com.tw/articles/10241354
-
+#SELinux 模式與切換
+  sudo setenforce 0
+  
 #install mariadb
   sudo yum -y install mariadb-server mariadb
   sudo systemctl start mariadb
@@ -39,6 +40,59 @@
   sudo yum-config-manager --enable remi-php74
   sudo yum -y install php php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis
 
+#php-fpm
+  sudo systemctl start php-fpm
+  sudo systemctl status php-fpm
+  sudo systemctl enable php-fpm
+
+#設置預設conf.d
+  sudo vim /etc/nginx/conf.d/default.conf
+  ***
+  server {
+      listen       80;
+      server_name  localhost;
+      access_log  /var/log/nginx/host.access.log  main;
+      location / {
+          root   /usr/share/nginx/html;
+          index  index.html index.htm;
+      }
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+          root   /usr/share/nginx/html;
+      }
+  }
+  ***
+
+#簡單conf.d
+  sudo vim *.com.conf
+  
+  ***
+  upstream php {
+    server 127.0.0.1:9000;
+  }
+  server {
+    listen 80;
+    server_name ffbnmo.com;
+    index  index.php index.html;
+    root  /website/ffbnmo.com/wordpress;
+
+    location ~ \.php$ {
+      include fastcgi.conf;
+      fastcgi_intercept_errors on;
+      fastcgi_pass php;
+    }
+  }
+  ***
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------
 #修改php.ini
   sudo vim /etc/php.ini
 
