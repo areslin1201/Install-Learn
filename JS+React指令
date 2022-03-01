@@ -1,7 +1,0 @@
-1. 監聽滾動事件
-  addEventListener('scroll'...
-  
-2. dangerouslySetInnerHTML React替代innerHTML
-  dangerouslySetInnerHTML = {__html: 'First &middot; Second'};
-  
-3. 

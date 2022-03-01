@@ -1,0 +1,25 @@
+1. 監聽滾動事件
+  addEventListener('scroll'...
+  
+2. 字串轉換為HTML格式 dangerouslySetInnerHTML React替代innerHTML
+  dangerouslySetInnerHTML = {__html: 'First &middot; Second'};
+  
+3. 格棚系統 Grid 可使用以下網站(flexboxgrid.com)
+
+4. RWD 測試網站
+  - mattkersley.com/responsive
+  - responsinator.com
+  
+5. <meta name="viewport" content="width=device-width;initial-scale=1.0">
+
+6. 台灣身分證檢查
+  =/^[a-z|A=Z][12][0-9]{8}/;
+  regExp: /^a/i =>第一個字可以是a或A
+  
+7. Js計時器
+  window.setInterval(newDate.getHours(), 1000)
+
+8. 小寫轉大寫: toUpperCase()
+  大寫轉小寫: toLowerCase()
+  
+9.
